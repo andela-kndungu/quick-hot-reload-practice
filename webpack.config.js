@@ -5,7 +5,10 @@ const assetsPath = path.join(__dirname, './public/build');
 const entryPath = path.join(__dirname, 'app/main.js');
 
 module.exports = {
-  entry: [ entryPath, 'webpack/hot/dev-server' ],
+  entry: [
+    'webpack/hot/dev-server',
+    entryPath
+  ],
   devtool: 'eval-source-map',
   output: {
     path: assetsPath,
@@ -22,9 +25,13 @@ module.exports = {
       }
     }]
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     inline: true,
-    contentBase: "public"
+    contentBase: "public",
+    hot: true
   }
 };
 
